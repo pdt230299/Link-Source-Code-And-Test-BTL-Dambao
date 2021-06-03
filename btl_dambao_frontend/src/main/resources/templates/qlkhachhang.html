@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="utf-8"/>
+<title>Quản Lý Khách Hàng</title>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+</head>
+<body style="background-color: #ced4da;">
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link" href="/customers">Khách Hàng </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/donhang" id="qldonhang">Đơn Hàng</a>
+      </li>
+    </ul>
+    <form class="form-inline my-2 my-lg-0" th:action="@{/customers/search}" method = "get">
+      <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" name = "inputSearch">
+      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Tìm Khách Hàng</button>
+    </form>
+  </div>
+</nav>
+    <h1>Danh Sách Khách Hàng</h1>  
+    <a href="customers/new" class="text-decoration-none float-left" >
+    <button class="btn btn-secondary" id="create-btn-customer" >
+    Thêm Khách Hàng
+    </button>      
+    </a>
+    <br/><br/><br/>
+ <div class="d-flex justify-content-center">
+    <table class="table table-dark">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>CMND</th>
+                <th>Họ Tên</th>
+                <th>TaiKhoan</th>
+                <th>Địa chỉ</th>
+                <th>Hành Động</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="kh : ${listKhachHang}">
+                <td th:text="${kh.idkhachhang}"></td>
+                <td th:text="${kh.cmnd}"></td>
+                <td th:text="${kh.ten}"></td>
+                <td th:text="${kh.username}"></td>
+                <td th:text="${kh.diachi}"></td>
+                <td>
+                    <a th:href="@{'/customers/edit/' + ${kh.idkhachhang}}" th:id="@{'edit-'+${kh.idkhachhang}}">Sửa</a>
+                    &nbsp;&nbsp;&nbsp;
+                    <a th:href="@{'/customers/delete/' + ${kh.idkhachhang}}" th:id="@{'delete-'+${kh.idkhachhang}}">Xóa</a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>   
+
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+</body>
+</html>

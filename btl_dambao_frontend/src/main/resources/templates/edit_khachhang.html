@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="utf-8" />
+<title>Sửa Khách Hàng</title>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+</head>
+<body style="background-color: #ced4da;">
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link" href="/customers">Khách Hàng </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/donhang">Đơn Hàng</a>
+      </li>
+    </ul>
+
+  </div>
+</nav>
+        <div class="mt-4 container">
+    <h3>Sửa Khách Hàng</h3>
+    <form th:action="@{/customers/save_edit}" th:object="${khachhang}"
+            method="post">
+        <div class="form-group">
+            <label >ID</label>
+            <input type="text" class="form-control" th:field="*{idkhachhang}" readonly="readonly">
+        </div>
+        <div class="form-group">
+            <label >Tên đăng nhập</label>
+            <input type="text" class="form-control" th:field="*{username}" readonly="readonly">
+        </div>
+        <div class="form-group">
+            <label >Mật khẩu</label>
+            <input type="text" class="form-control" th:field="*{password}"id="password-input">
+            <span style="color:red" th:text="${error_password}"id="password-input-error"></span>
+        </div>
+        <div class="form-group">
+            <label > CMND </label>
+            <input type="text" class="form-control" th:field="*{cmnd}"id="cmnd-input">
+            <span style="color:red" th:text="${error_cmnd}" id="cmnd-input-error"></span>
+        </div>
+        <div class="form-group">
+            <label > Họ tên</label>
+            <input type="text" class="form-control" th:field="*{ten}"id="ten-input">
+            <span style="color:red" th:text="${error_ten}" id="ten-input-error"></span>
+        </div>
+        <div class="form-group">
+            <label > Địa chỉ:</label>
+            <input type="text" class="form-control" th:field="*{diachi}"id="diachi-input">
+            <span style="color:red" th:text="${error_diachi}"id="diachi-input-error"></span>
+        </div>
+        <button type="submit" class="btn btn-primary" id="btn-edit">Sửa Khách Hàng</button>
+    </form>
+</div>
+</body>
+</html>

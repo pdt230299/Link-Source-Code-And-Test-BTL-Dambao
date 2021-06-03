@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="utf-8"/>
+<title>Quản Lý Đơn Hàng</title>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+</head>
+<body style="background-color: #ced4da;">
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link" href="/customers">Khách Hàng </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/donhang">Đơn Hàng</a>
+      </li>
+    </ul>
+    <form class="form-inline my-2 my-lg-0" th:action="@{/donhang/search}" method = "get">
+      <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" name = "inputSearch">
+      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Tìm Đơn Hàng</button>
+    </form>
+  </div>
+</nav>
+    <h1>Danh Sách Đơn  Hàng</h1>  
+    <a href="donhang/new" class="text-decoration-none float-left" >
+    <button class="btn btn-secondary " id="create-btn-donhang">
+    Thêm Đơn Hàng
+    </button>      
+    </a>
+    <br/><br/><br/>
+<div align="center">
+    <table class="table table-dark">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Tên Khách Hàng</th>
+                <th>Tên Mặt Hàng</th>
+                <th>Số Lượng</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="kh : ${listDonHang}">
+                <td th:text="${kh.iddonhang}"></td>
+                <td th:text="${kh.tenkhachhang}"></td>
+                <td th:text="${kh.tenmathang}"></td>
+                <td th:text="${kh.soluong}"></td>
+                <td>
+                    <a th:href="@{'/donhang/edit/' + ${kh.iddonhang}}" th:id="@{'edit-'+${kh.iddonhang}}">Sửa </a>
+                    &nbsp;&nbsp;&nbsp;
+                    <a th:href="@{'/donhang/delete/' + ${kh.iddonhang}}" th:id="@{'delete-'+${kh.iddonhang}}">Xóa</a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>   
+</body>
+</html>
